@@ -2,6 +2,6 @@
 
 using namespace std;
 
-void dtw() {
+void dtw(int* s, int* t, int n, int m) {
     cout << "PARALLEL" << endl;
 }
