@@ -1,4 +1,6 @@
 #include <iostream>
+#include <chrono>
+#include <cstdlib>
 #include <stdlib.h>
 
 using namespace std;
@@ -7,7 +9,7 @@ extern int dtw(int* s, int* t, int n, int m);
 
 int main(int argc, char** argv) 
 {
-    int N = 1000;
+    int N = atoi(argv[1]);
 
     int* s = new int[N];
     int* t = new int[N];
@@ -18,8 +20,15 @@ int main(int argc, char** argv)
         t[i] = val;
     }
 
+    chrono::time_point<chrono::high_resolution_clock> start_time = chrono::high_resolution_clock::now();
+
     int minCost = dtw(s, t, N, N);
-    cout << minCost << endl;
+    
+    chrono::time_point<chrono::high_resolution_clock> end_time = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end_time - start_time;
+
+    cout << "Problem Size: " << N << endl;
+    cout << "Time Elapsed: " << elapsed.count() << endl;
     
     delete[] s;
     delete[] t;

@@ -19,6 +19,7 @@ add_executable(serial-dtw serial.cpp)
 target_link_libraries(serial-dtw PRIVATE main)
 target_compile_features(serial-dtw PRIVATE c_std_11 c_restrict)
 target_compile_options(serial-dtw PRIVATE -Wall -pedantic -march=native)
+configure_file(serial-job.in serial-job)
 
 # PARALLEL
 add_executable(parallel-dtw parallel.cpp)
