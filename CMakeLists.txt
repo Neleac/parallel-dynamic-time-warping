@@ -31,4 +31,10 @@ set(TRAVERSAL "diagonal")
 configure_file(serial-job.in ${TRAVERSAL}-job)
 
 # PARALLEL
+add_executable(parallel-dtw parallel.cpp)
+target_link_libraries(parallel-dtw PRIVATE main)
+target_compile_features(parallel-dtw PRIVATE c_std_11 c_restrict)
+target_compile_options(parallel-dtw PRIVATE -Wall -pedantic -march=native)
+configure_file(parallel-job.in parallel-job)
+
 # VARIABLE

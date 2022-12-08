@@ -1,0 +1,13 @@
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+for P in 2 4 8 16 32
+   do
+   export OMP_NUM_THREADS=$P
+
+   for N in 1000, 5000, 10000, 15000, 20000
+      do
+      ./parallel-dtw $N
+   done
+
+done
