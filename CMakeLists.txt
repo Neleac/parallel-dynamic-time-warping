@@ -39,3 +39,10 @@ target_compile_options(parallel-dtw PRIVATE -fopenmp -Wall -pedantic -march=nati
 configure_file(parallel-job.in parallel-job)
 
 # VARIABLE
+add_executable(variable-dtw variable.cpp)
+target_link_libraries(variable-dtw PRIVATE main)
+target_link_options(variable-dtw PRIVATE -fopenmp)
+target_compile_features(variable-dtw PRIVATE c_std_11 c_restrict)
+target_compile_options(variable-dtw PRIVATE -fopenmp -Wall -pedantic -march=native)
+set(TRAVERSAL "variable")
+configure_file(serial-job.in ${TRAVERSAL}-job)
