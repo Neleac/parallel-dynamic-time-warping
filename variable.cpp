@@ -11,7 +11,9 @@ int dtw(int** DP, int* s, int* t, int n, int m) {
 
     int nDiags = n + m - 1;
     int stepSize = nDiags / 9;
-    int nThreads = 1, maxThreads = 16;
+    int nThreads = 2;
+    int minThreads = 2;
+    int maxThreads = 32;
     bool increase = true;
 
     for (int diag = 0; diag < nDiags; diag++) {
@@ -22,7 +24,7 @@ int dtw(int** DP, int* s, int* t, int n, int m) {
         if ((diag + 1) % stepSize == 0) {
             if (increase) {
                 nThreads *= 2;
-            } else {
+            } else if (nThreads > minThreads) {
                 nThreads /= 2;
             }
 
