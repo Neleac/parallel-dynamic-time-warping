@@ -14,17 +14,21 @@ endif ()
 add_library(main OBJECT main.cpp)
 target_compile_features(main PRIVATE cxx_std_11)
 
-# SERIAL
-add_executable(serial-dtw serial.cpp)
-target_link_libraries(serial-dtw PRIVATE main)
-target_compile_features(serial-dtw PRIVATE c_std_11 c_restrict)
-target_compile_options(serial-dtw PRIVATE -Wall -pedantic -march=native)
-configure_file(serial-job.in serial-job)
+# ROW (serial)
+add_executable(row-dtw row.cpp)
+target_link_libraries(row-dtw PRIVATE main)
+target_compile_features(row-dtw PRIVATE c_std_11 c_restrict)
+target_compile_options(row-dtw PRIVATE -Wall -pedantic -march=native)
+set(TRAVERSAL "row")
+configure_file(serial-job.in ${TRAVERSAL}-job)
+
+# DIAGONAL (serial)
+add_executable(diagonal-dtw diagonal.cpp)
+target_link_libraries(diagonal-dtw PRIVATE main)
+target_compile_features(diagonal-dtw PRIVATE c_std_11 c_restrict)
+target_compile_options(diagonal-dtw PRIVATE -Wall -pedantic -march=native)
+set(TRAVERSAL "diagonal")
+configure_file(serial-job.in ${TRAVERSAL}-job)
 
 # PARALLEL
-add_executable(parallel-dtw parallel.cpp)
-target_link_libraries(parallel-dtw PRIVATE main)
-target_compile_features(parallel-dtw PRIVATE c_std_11 c_restrict)
-target_compile_options(parallel-dtw PRIVATE -Wall -pedantic -march=native)
-
 # VARIABLE
